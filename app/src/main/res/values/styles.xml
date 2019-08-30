@@ -14,4 +14,9 @@
         <item name="android:statusBarColor">#FFFFFF</item>
     </style>
 
+    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">#FFFFFF</item>
+        <item name="android:colorForeground">#FFFFFF</item>
+    </style>
+
 </resources>
