@@ -142,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         tts.setPitch(1.5f); //1.5톤 올려서
         tts.setSpeechRate(1.0f); //1배속으로 읽기
 
+
         intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, this.getPackageName());
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR");
@@ -169,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
         bt.setOnDataReceivedListener(new BluetoothSPP.OnDataReceivedListener() { //데이터 수신
             public void onDataReceived(byte[] data, String message) {
+                Log.d("test", "input: "+message);
                 switch (message) {
                     case "back":
                         if (!input.equals("")) {
@@ -178,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case "call":
                         for (int i = 0; i < list.size(); i++) {
-                            if (list.get(i).getNum().equals(input)) {
+                            if (list.get(i).getNum().equals("#"+input)) {
                                 if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                                     Toast.makeText(MainActivity.this, "전화 권한이 필요합니다.", Toast.LENGTH_SHORT).show();
                                     return;
@@ -191,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case "sns":
                         for (int i = 0; i < list.size(); i++) {
-                            if (list.get(i).getNum().equals(input)) {
+                            if (list.get(i).getNum().equals("#"+input)) {
 
                                 input="";
                                 Log.d("test", input);
@@ -242,11 +244,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        bt.setOnDataReceivedListener(new BluetoothSPP.OnDataReceivedListener() { //데이터 수신
-            public void onDataReceived(byte[] data, String message) {
-                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-            }
-        });
+//        bt.setOnDataReceivedListener(new BluetoothSPP.OnDataReceivedListener() { //데이터 수신
+//            public void onDataReceived(byte[] data, String message) {
+//                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         connectBtn = findViewById(R.id.connectBtn); //connect
         connectBtn.setOnClickListener(new View.OnClickListener() {
