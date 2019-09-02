@@ -176,22 +176,25 @@ public class MainActivity extends AppCompatActivity {
                         if (!input.equals("")) {
                             input = input.substring(0, input.length() - 1);
                             Log.d("test", input);
+                            Toast.makeText(MainActivity.this, input, Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case "call":
+                        Toast.makeText(MainActivity.this, "call", Toast.LENGTH_SHORT).show();
                         for (int i = 0; i < list.size(); i++) {
                             if (list.get(i).getNum().equals("#"+input)) {
                                 if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                                     Toast.makeText(MainActivity.this, "전화 권한이 필요합니다.", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
-                                input="";
                                 Log.d("test", input);
                                 startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + list.get(i).getPhone())));
                             }
                         }
+                        input="";
                         break;
                     case "sns":
+                        Toast.makeText(MainActivity.this, "sns", Toast.LENGTH_SHORT).show();
                         for (int i = 0; i < list.size(); i++) {
                             if (list.get(i).getNum().equals("#"+input)) {
 
@@ -202,8 +205,9 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                         break;
-                    case "emergency":
+                    case "Emergency":
 
+                        Toast.makeText(MainActivity.this, "emergency", Toast.LENGTH_SHORT).show();
                         locationManager = (LocationManager) MainActivity.this.getSystemService(Context.LOCATION_SERVICE);
                         Location userLocation = getMyLocation();
                         double latitude, longitude;
@@ -213,13 +217,16 @@ public class MainActivity extends AppCompatActivity {
                         //Toast.makeText(MainActivity.this, latitude + " " + longitude, Toast.LENGTH_SHORT).show();
 
                         SmsManager smsManager = SmsManager.getDefault();
-                        smsManager.sendTextMessage("01086998406", null, latitude + " " + longitude, null, null);
+                        smsManager.sendTextMessage("01027841970", null, "시각장애인이 도움이 필요합니다. "+latitude + " " + longitude, null, null);
                         tts.speak("긴급 메세지가 전송되었습니다.", TextToSpeech.QUEUE_FLUSH, null, null);
                         Toast.makeText(MainActivity.this, "긴급 메세지가 전송되었습니다.",
                                 Toast.LENGTH_LONG).show();
+                        input="";
+                        break;
                     default:
                         input = input.concat(message);
                         Log.d("test", input);
+                        Toast.makeText(MainActivity.this, input, Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
