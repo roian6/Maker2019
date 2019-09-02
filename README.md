@@ -1,6 +1,6 @@
 # Smart Glove
 
-![](./img/image1.png)
+![](./img/image1.jpg)
 시각장애인 모바일 경험을 위한 IoT 솔루션, Smart Glove
 
 
@@ -30,8 +30,8 @@
 
 ## 스크린샷
 
-![](./img/image2.png)
-![](./img/image3.png)
-![](./img/image4.png)
-![](./img/image5.png)
-![](./img/image6.png)
+![](./img/image2.jpg)
+![](./img/image3.jpg)
+![](./img/image4.jpg)
+![](./img/image5.jpg)
+![](./img/image6.jpg)
